@@ -1856,28 +1856,30 @@ player.id='musicPlayer';
 player.style.cssText='width:90%;max-width:720px;margin:40px auto 20px auto;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:24px;padding:20px;color:white;box-shadow:0 8px 32px rgba(0,0,0,0.25);';
 player.innerHTML=`
 <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;">
-<img src="https://i.imgur.com/4J0KY9r.jpeg" style="width:56px;height:56px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,0.2);">
-  <div><div style="font-weight:800;">Timog Made</div><div style="opacity:0.6;font-size:13px;"> Lil Jakas & PONG20</div></div>
+<img src="https://i.imgur.com/4J0KY9r.jpeg" style="width:56px;height:56px;border-radius:10px;object-fit:cover;">
+<div><div style="font-weight:800;">Timog Made</div><div style="opacity:0.6;font-size:13px;">Lil Jakas & PONG20</div></div>
 </div>
 <div id="lyricsBox" style="background:rgba(255,255,255,0.06);border-radius:12px;padding:12px;height:140px;overflow:auto;font-size:13px;line-height:22px;">
-  <div class="lyr">Oy, oy, oy, anong ginagawa niyo diyan?</div>
-  <div class="lyr">Sa, sali naman ako diyan</div>
-  <div class="lyr">Oy, pukinang ina, hala</div>
-  <div class="lyr">Pabukas nga nito saglit, oy</div>
-  <div class="lyr">Yeah, yeah, yeah</div>
-  <div class="lyr">Eto nga pala ang Lil Big Jakas</div>
-  <div class="lyr">Kumakatok bakal 'yung gamit</div>
+<div class="lyr">Oy, oy, oy, anong ginagawa niyo diyan?</div>
+<div class="lyr">Sa, sali naman ako diyan</div>
+<div class="lyr">Oy, pukinang ina, hala</div>
+<div class="lyr">Pabukas nga nito saglit, oy</div>
+<div class="lyr">Yeah, yeah, yeah</div>
+<div class="lyr">Eto nga pala ang Lil Big Jakas</div>
+<div class="lyr">Kumakatok bakal 'yung gamit</div>
 </div>
 <div style="display:flex;align-items:center;gap:10px;margin:14px 0;">
-  <span id="curTime" style="font-size:11px;">0:00</span>
-  <div id="progWrap" style="flex:1;height:4px;background:rgba(255,255,255,0.2);border-radius:10px;"><div id="progBar" style="height:100%;width:0%;background:#8a4eff;border-radius:10px;"></div></div>
-  <span style="font-size:11px;">3:21</span>
+<span id="curTime" style="font-size:11px;">0:00</span>
+<div id="progWrap" style="flex:1;height:4px;background:rgba(255,255,255,0.2);border-radius:10px;"><div id="progBar" style="height:100%;width:0%;background:white;border-radius:10px;"></div></div>
+<span style="font-size:11px;">3:21</span>
 </div>
 <div style="display:flex;justify-content:center;gap:36px;">
-  <span id="prevBtn" style="cursor:pointer;">⏮</span>
-  <span id="playBtn" style="background:white;color:black;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;">▶</span>
-  <span id="nextBtn" style="cursor:pointer;">⏭</span>
+<span id="prevBtn" style="cursor:pointer;">⏮</span>
+<span id="playBtn" style="background:white;color:black;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;">▶</span>
+<span id="nextBtn" style="cursor:pointer;">⏭</span>
 </div>
+<audio id="audioEl" src="./bg.mp3"></audio>
+`;
 <audio id="audioEl" src="./bg.mp3"></audio>
 <script>
 let audio=document.getElementById('audioEl'),playBtn=document.getElementById('playBtn'),progBar=document.getElementById('progBar'),progWrap=document.getElementById('progWrap'),curTime=document.getElementById('curTime');
