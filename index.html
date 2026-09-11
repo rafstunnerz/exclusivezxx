@@ -1856,7 +1856,7 @@ player.id='musicPlayer';
 player.style.cssText='width:90%;max-width:720px;margin:40px auto 20px auto;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:24px;padding:20px;color:white;box-shadow:0 8px 32px rgba(0,0,0,0.25);';
 player.innerHTML=`
 <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;">
-  <img src="https://i.scdn.co/image/ab67616d0000b273b6d29fb39c7cc4b5caaf98ea" style="width:56px;height:56px;border-radius:10px;">
+<img src="https://i.imgur.com/4J0KY9r.jpeg" style="width:56px;height:56px;border-radius:10px;object-fit:cover;border:1px solid rgba(255,255,255,0.2);">
   <div><div style="font-weight:800;">Timog Made</div><div style="opacity:0.6;font-size:13px;"> Lil Jakas & PONG20</div></div>
 </div>
 <div id="lyricsBox" style="background:rgba(255,255,255,0.06);border-radius:12px;padding:12px;height:140px;overflow:auto;font-size:13px;line-height:22px;">
@@ -1878,18 +1878,21 @@ player.innerHTML=`
   <span id="playBtn" style="background:white;color:black;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;">▶</span>
   <span id="nextBtn" style="cursor:pointer;">⏭</span>
 </div>
-<audio id="audioEl" src="fallen.mp3"></audio>
-`;
-
-let luvones = [...document.querySelectorAll('*')].find(e=>e.textContent.trim()==='LUVONES');
-if(luvones){ luvones.parentNode.insertBefore(player, luvones); } else { document.body.appendChild(player); }
-
-let audio=document.getElementById('audioEl'),playBtn=document.getElementById('playBtn'),progBar=document.getElementById('progBar'),progWrap=document.getElementById('progWrap'),curTime=document.getElementById('curTime'),isPlaying=false;
-function fmt(s){let m=Math.floor(s/60);let sc=Math.floor(s%60);return m+":"+(sc<10?"0"+sc:sc);}
-playBtn.onclick=()=>{if(isPlaying){audio.pause();playBtn.textContent='▶';}else{audio.play();playBtn.textContent='⏸';}isPlaying=!isPlaying;};
-
-// SYNCED WHITE LYRICS
+<audio id="audioEl" src="./bg.mp3"></audio>
+<script>
+let audio=document.getElementById('audioEl'),playBtn=document.getElementById('playBtn'),progBar=document.getElementById('progBar'),progWrap=document.getElementById('progWrap'),curTime=document.getElementById('curTime');
+let lyrs=[...document.querySelectorAll('.lyr')];
 let synced=[0,5,11,18,24,31,35];
+let isPlaying=false;
+
+function fmt(s){let m=Math.floor(s/60);let sc=Math.floor(s%60);return m+":"+(sc<10?"0"+sc:sc);}
+
+playBtn.onclick=()=>{
+  if(isPlaying){audio.pause();playBtn.textContent='▶';}
+  else{audio.play();playBtn.textContent='⏸';}
+  isPlaying=!isPlaying;
+};
+
 audio.ontimeupdate=()=>{
   progBar.style.width=(audio.currentTime/audio.duration)*100+'%';
   curTime.textContent=fmt(audio.currentTime);
@@ -1898,8 +1901,12 @@ audio.ontimeupdate=()=>{
     l.style.color=i===idx?'white':'rgba(255,255,255,0.35)';
     l.style.opacity=i===idx?'1':'0.4';
     l.style.fontWeight=i===idx?'800':'400';
+    if(i===idx) l.scrollIntoView({behavior:'smooth',block:'center'});
   });
 };
+
+progWrap.onclick=(e)=>{let r=progWrap.getBoundingClientRect();audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;};
+</script>
 progWrap.onclick=(e)=>{let r=progWrap.getBoundingClientRect();audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;};
 </script>
 </body>
