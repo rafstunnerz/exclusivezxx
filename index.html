@@ -1760,28 +1760,27 @@ if(!reduceMotion){
   drawBackground();
 }
 {
-  const gangIds = [
-    '1515945635965042792',
-    '1248736047643365458',
-    '803524936042807296',
-    '1345256472891883613',
-    '840973126266781738',
-    '1326097559114092575'
-  ];
+  const gangIds = ['1515945635965042792','1248736047643365458','803524936042807296','1345256472891883613','840973126266781738','1326097559114092575'];
   let track = document.getElementById('gangTrack') || document.getElementById('marqueeTrack') || document.querySelector('.marquee-track');
   if(track){
     track.innerHTML = '';
-    track.style.display = 'flex';
-    track.style.gap = '16px';
-    track.style.animation = 'marquee 20s linear infinite';
-    const all = [...gangIds, ...gangIds, ...gangIds, ...gangIds];
+    const style = document.createElement('style');
+    style.innerHTML = `@keyframes gangMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}} #gangTrack{animation:gangMove 15s linear infinite !important; display:flex !important; gap:14px !important; width:max-content !important}`;
+    document.head.appendChild(style);
+    track.id = 'gangTrack';
+    const all = [...gangIds,...gangIds,...gangIds,...gangIds];
     all.forEach(id=>{
-      const d=document.createElement('div');
-      d.style.width='48px';
-      d.style.height='48px';
-      d.style.flexShrink='0';
-      d.innerHTML=`<img src="https://cdn.discordapp.com/embed/avatars/0.png" data-lanyard-id="${id}" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.3);">`;
-      track.appendChild(d);
+      const wrap = document.createElement('div');
+      wrap.style.cssText = 'width:44px;height:44px;flex-shrink:0;';
+      wrap.innerHTML = `<img data-id="${id}" style="width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);background:#111;object-fit:cover">`;
+      track.appendChild(wrap);
+      fetch(`https://api.lanyard.rest/v1/users/${id}`).then(r=>r.json()).then(j=>{
+        if(j.data && j.data.discord_user){
+          const u = j.data.discord_user;
+          const av = u.avatar ? `https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png?size=128` : `https://cdn.discordapp.com/embed/avatars/${(parseInt(u.discriminator)%5)}.png`;
+          wrap.querySelector('img').src = av;
+        }
+      }).catch(()=>{ wrap.querySelector('img').src = `https://cdn.discordapp.com/embed/avatars/0.png`; });
     });
   }
 }
