@@ -1814,7 +1814,22 @@ if(!reduceMotion){
 document.querySelector('.members-heading').textContent = 'LUVONES';
 document.getElementById('enterBtn').textContent='exclusivez';
 document.getElementById('enterSub').textContent='exclusivez';
-  let sc=0;function puff(x,y){if(sc>20)return;sc++;let d=document.createElement('div');d.style.cssText=`position:fixed;left:${x-20}px;top:${y-20}px;width:40px;height:40px;background:rgba(255,255,255,.5);border-radius:50%;pointer-events:none;z-index:99999;filter:blur(7px);opacity:.6;transition:all .9s`;document.body.appendChild(d);setTimeout(()=>{d.style.transform='scale(2.5) translateY(-40px)';d.style.opacity='0'},10);setTimeout(()=>{d.remove();sc--;},900);}window.addEventListener('mousemove',e=>puff(e.clientX,e.clientY));
+let sc=0;
+function puff(x,y){
+ if(sc>20)return;
+ sc++;
+ let d=document.createElement('div');
+ d.style.cssText=`position:fixed;left:${x-20}px;top:${y-20}px;width:40px;height:40px;background:rgba(255,255,255,.5);border-radius:50%;pointer-events:none;z-index:99999;filter:blur(7px);opacity:.6;transition:all .9s`;
+ document.body.appendChild(d);
+ setTimeout(()=>{d.style.transform='scale(2.5) translateY(-40px)';d.style.opacity='0'},10);
+ setTimeout(()=>{d.remove();sc--;},900);
+}
+window.addEventListener('mousemove',e=>puff(e.clientX,e.clientY));
+
+let nav=document.createElement('nav');
+nav.style.cssText='position:fixed;top:18px;left:50%;transform:translateX(-50%);width:92%;max-width:950px;height:60px;display:flex;align-items:center;justify-content:space-around;background:rgba(15,15,15,0.8);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:100px;z-index:99999;padding:0 10px;';
+nav.innerHTML=`<span onclick="window.scrollTo({top:0,behavior:'smooth'})" style="background:white;color:black;padding:10px 28px;border-radius:100px;font-weight:800;cursor:pointer;font-size:14px;">Home</span><span onclick="document.querySelector('.members-heading').scrollIntoView({behavior:'smooth'})" style="color:white;cursor:pointer;font-size:14px;">Members</span><span onclick="window.scrollTo({top:800,behavior:'smooth'})" style="color:white;cursor:pointer;font-size:14px;">About</span><span style="color:white;cursor:pointer;font-size:14px;">Socials</span>`;
+document.body.appendChild(nav); 
 </script>
 </body>
 </html>
