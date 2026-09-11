@@ -1839,6 +1839,8 @@ navBtns.forEach(b=>{
 const activeBtn=document.querySelector('.nav-btn.active');
 if(activeBtn) updatePill(activeBtn);
 
+
+}
 const themeBtn=document.getElementById('themeBtn');
 if(themeBtn){
   themeBtn.addEventListener("click",()=>{
@@ -1848,7 +1850,15 @@ if(themeBtn){
     setTimeout(()=>updatePill(document.querySelector(".nav-btn.active")),100);
   });
 }
-
+const enterBtn=document.getElementById('enterBtn');
+const gate=document.getElementById('gate');
+if(enterBtn&&gate){
+  enterBtn.addEventListener('click',()=>{
+    document.body.classList.remove('locked');
+    gate.style.display='none';
+    setTimeout(()=>updatePill(document.querySelector(".nav-btn.active")),100);
+  });
+}
 function SmokeCursor(o){
   function c(x,y){
     const p=document.createElement("div");
@@ -1862,7 +1872,7 @@ function SmokeCursor(o){
   }
   window.addEventListener("mousemove",e=>c(e.clientX,e.clientY));
 }
-SmokeCursor({size:55,duration:900,blur:12,opacity:0.7};
+SmokeCursor({size:55,duration:900,blur:12,opacity:0.7});
 </script>
 </body>
 </html>
