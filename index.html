@@ -1814,6 +1814,7 @@ if(!reduceMotion){
 document.querySelector('.members-heading').textContent = 'LUVONES';
 document.getElementById('enterBtn').textContent='exclusivez';
 document.getElementById('enterSub').textContent='exclusivez';
+  let sc=0;function puff(x,y){if(sc>20)return;sc++;let d=document.createElement('div');d.style.cssText=`position:fixed;left:${x-20}px;top:${y-20}px;width:40px;height:40px;background:rgba(255,255,255,.5);border-radius:50%;pointer-events:none;z-index:99999;filter:blur(7px);opacity:.6;transition:all .9s`;document.body.appendChild(d);setTimeout(()=>{d.style.transform='scale(2.5) translateY(-40px)';d.style.opacity='0'},10);setTimeout(()=>{d.remove();sc--;},900);}window.addEventListener('mousemove',e=>puff(e.clientX,e.clientY));
 </script>
 </body>
 </html>
