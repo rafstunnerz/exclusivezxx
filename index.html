@@ -1764,29 +1764,30 @@ if(!reduceMotion){
     {id:'1515945635965042792', name:'KOSAH 1738'},
     {id:'1248736047643365458', name:'monchie 1738'},
     {id:'803524936042807296', name:'mon 1738'},
-    {id:'1345256472891883613', name:'Mr. chillerong youngstunna 1738'},
+    {id:'1345256472891883613', name:'Mr. chillerong youngstunna'},
     {id:'840973126266781738', name:'neo 1738'},
     {id:'1326097559114092575', name:'Slobe'},
+    {id:'1515945635965042792', name:'1738 Type Beat'},
+    {id:'1248736047643365458', name:'SPINBACK nashi'},
   ];
-  let track = document.getElementById('gangTrack') || document.querySelector('.marquee-track');
+  let track = document.getElementById('gangTrack') || document.querySelector('.marquee-track') || document.getElementById('gangWrap');
   if(track){
-    track.innerHTML = '';
-    track.id = 'gangTrack';
+    if(track.id==='gangWrap') track.innerHTML='';
+    else { track.innerHTML=''; track.id='gangTrack'; }
     document.head.insertAdjacentHTML('beforeend', `<style>
       @keyframes gangMove1{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
       @keyframes gangMove2{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
-      #gangWrap{display:flex;flex-direction:column;gap:12px;overflow:hidden;width:100%;padding:15px 0;}
-      .gangRow{display:flex;gap:12px;width:max-content;}
-      .gangRow.row1{animation:gangMove1 35s linear infinite;}
-      .gangRow.row2{animation:gangMove2 35s linear infinite;}
-      .gangPill{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);backdrop-filter:blur(10px);border-radius:9999px;padding:6px 14px 6px 6px;flex-shrink:0;min-width:120px;}
-      .gangPill img{width:28px;height:28px;border-radius:50%;object-fit:cover;background:#222;}
-      .gangPill span{font-size:12px;font-weight:600;color:#fff;white-space:nowrap;letter-spacing:0.5px;}
-      .statusDot{width:8px;height:8px;border-radius:50%;margin-left:auto;}
+      #gangWrap{display:flex;flex-direction:column;gap:16px;overflow:hidden;width:100%;padding:20px 0;}
+      .gangRow{display:flex;gap:16px;width:max-content;}
+      .gangRow.row1{animation:gangMove1 30s linear infinite;}
+      .gangRow.row2{animation:gangMove2 30s linear infinite;}
+      .gangPill{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.25);backdrop-filter:blur(12px);border-radius:9999px;padding:8px 22px 8px 8px;flex-shrink:0;}
+      .gangPill img{width:48px !important;height:48px !important;border-radius:50% !important;object-fit:cover !important;background:#222;border:2px solid #fff !important;}
+      .gangPill span{font-size:15px !important;font-weight:700 !important;color:#fff !important;white-space:nowrap;letter-spacing:0.3px;}
+      .statusDot{width:12px !important;height:12px !important;border-radius:50%;margin-left:10px;border:2px solid #000;}
     </style>`);
     
-    const wrap = document.createElement('div');
-    wrap.id = 'gangWrap';
+    const wrap = document.createElement('div'); wrap.id='gangWrap';
     const row1 = document.createElement('div'); row1.className='gangRow row1';
     const row2 = document.createElement('div'); row2.className='gangRow row2';
     wrap.appendChild(row1); wrap.appendChild(row2);
@@ -1794,25 +1795,20 @@ if(!reduceMotion){
     
     const createPill = (m) => {
       const pill = document.createElement('div'); pill.className='gangPill';
-      pill.innerHTML = `<img data-id="${m.id}" src="https://cdn.discordapp.com/embed/avatars/0.png"><span>${m.name}</span><div class="statusDot" style="background:#555"></div>`;
+      pill.innerHTML = `<img src="https://cdn.discordapp.com/embed/avatars/0.png"><span>${m.name}</span><div class="statusDot" style="background:#23a559"></div>`;
       fetch(`https://api.lanyard.rest/v1/users/${m.id}`).then(r=>r.json()).then(j=>{
-        if(j.data){
+        if(j.data?.discord_user){
           const u=j.data.discord_user;
-          const av = u.avatar ? `https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png?size=128` : '';
-          if(av) pill.querySelector('img').src = av;
-          if(j.data.discord_status){
-            const dot = pill.querySelector('.statusDot');
-            dot.style.background = j.data.discord_status==='online'?'#23a559':j.data.discord_status==='idle'?'#f0b232':j.data.discord_status==='dnd'?'#f23f43':'#80848e';
-          }
+          if(u.avatar) pill.querySelector('img').src=`https://cdn.discordapp.com/avatars/${u.id}/${u.avatar}.png?size=256`;
+          const dot=pill.querySelector('.statusDot');
+          const s=j.data.discord_status;
+          dot.style.background=s==='online'?'#23a559':s==='idle'?'#f0b232':s==='dnd'?'#f23f43':'#80848e';
         }
       });
       return pill;
     };
-    
-    const all = [...members, ...members, ...members, ...members];
-    all.forEach((m,i)=>{
-      (i%2===0?row1:row2).appendChild(createPill(m));
-    });
+    const all = [...members,...members,...members,...members];
+    all.forEach((m,i)=>{ (i%2===0?row1:row2).appendChild(createPill(m)); });
   }
 }
 </script>
