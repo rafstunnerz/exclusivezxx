@@ -1857,7 +1857,7 @@ player.style.cssText='width:90%;max-width:720px;margin:40px auto 20px auto;backg
 player.innerHTML=`
 <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;">
   <img src="https://i.scdn.co/image/ab67616d0000b273b6d29fb39c7cc4b5caaf98ea" style="width:56px;height:56px;border-radius:10px;">
-  <div><div style="font-weight:800;">Fallen</div><div style="opacity:0.6;font-size:13px;">Lola Amour</div></div>
+  <div><div style="font-weight:800;">Timog Made</div><div style="opacity:0.6;font-size:13px;"> Lil Jakas & PONG20</div></div>
 </div>
 <div id="lyricsBox" style="background:rgba(255,255,255,0.06);border-radius:12px;padding:12px;height:140px;overflow:auto;font-size:13px;line-height:22px;">
   <div class="lyr">Oy, oy, oy, anong ginagawa niyo diyan?</div>
@@ -1881,7 +1881,6 @@ player.innerHTML=`
 <audio id="audioEl" src="fallen.mp3"></audio>
 `;
 
-// ILALAGAY MISMO SA TAAS NG LUVONES
 let luvones = [...document.querySelectorAll('*')].find(e=>e.textContent.trim()==='LUVONES');
 if(luvones){ luvones.parentNode.insertBefore(player, luvones); } else { document.body.appendChild(player); }
 
