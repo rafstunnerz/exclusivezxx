@@ -1850,12 +1850,11 @@ document.getElementById('enterBtn')?.addEventListener('click',()=>{
     nav.style.display='flex'; 
     player.style.display='block'; 
   }, 600);
-});
-
-// MUSIC PLAYER - Fallen
+})
+  
 let player=document.createElement('div');
 player.id='musicPlayer';
-player.style.cssText='position:fixed;bottom:22px;left:22px;width:380px;max-width:92vw;background:rgba(18,18,28,0.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);border-radius:22px;padding:18px;z-index:99998;color:white;display:none;';
+player.style.cssText='position:fixed;bottom:160px;left:22px;width:380px;max-width:92vw;background:rgba(18,18,28,0.85);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.12);border-radius:22px;padding:18px;z-index:99998;color:white;display:none;';
 player.innerHTML=`<div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;"><img src="https://i.scdn.co/image/ab67616d0000b273b6d29fb39c7cc4b5caaf98ea" style="width:56px;height:56px;border-radius:10px;"><div><div style="font-weight:800;">Fallen</div><div style="opacity:0.6;font-size:13px;">Lola Amour</div></div></div><div id="lyricsBox" style="background:rgba(255,255,255,0.06);border-radius:12px;padding:12px;height:140px;overflow:auto;font-size:13px;line-height:22px;"><div class="lyr">What if I told you that I've fallen?</div><div class="lyr">And I like the way you say my name</div><div class="lyr">My heart skips a beat when I hear you calling</div><div class="lyr">And I like that it won't go away</div><div class="lyr">But nevermind, don't wanna give you any trouble</div><div class="lyr">Nevermind, nevermind</div><div class="lyr">I'm okay with being by your side for as long as I can</div></div><div style="display:flex;align-items:center;gap:10px;margin:14px 0;"><span id="curTime" style="font-size:11px;">0:00</span><div id="progWrap" style="flex:1;height:4px;background:rgba(255,255,255,0.2);border-radius:10px;"><div id="progBar" style="height:100%;width:0%;background:#8a4eff;border-radius:10px;"></div></div><span style="font-size:11px;">3:21</span></div><div style="display:flex;justify-content:center;gap:36px;"><span id="prevBtn">⏮</span><span id="playBtn" style="background:white;color:black;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;">▶</span><span id="nextBtn">⏭</span></div><audio id="audioEl" src="fallen.mp3"></audio>`;
 document.body.appendChild(player);
 let audio=document.getElementById('audioEl'),playBtn=document.getElementById('playBtn'),progBar=document.getElementById('progBar'),progWrap=document.getElementById('progWrap'),curTime=document.getElementById('curTime'),lyrics=document.querySelectorAll('.lyr'),isPlaying=false;
