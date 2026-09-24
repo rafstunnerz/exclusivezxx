@@ -1887,7 +1887,11 @@ let luvones = [...document.querySelectorAll('*')].find(e=>e.textContent.trim()==
 if(luvones){ 
   luvones.parentNode.insertBefore(player, luvones); 
     let gifBox = document.createElement('div');
-  gifBox.style.cssText = 'display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:20px;width:100%;';
+   gifBox.style.cssText = 'display:flex;flex-direction:row;gap:12px;justify-content:center;margin-top:20px;width:100%;flex-wrap:wrap;';
+  gifBox.innerHTML = `
+    <img src="https://i.imgur.com/KYCkDME.gif" style="width:48%;max-width:280px;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
+    <img src="https://i.imgur.com/wt42fGl.gif" style="width:48%;max-width:280px;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
+  `;
   gifBox.innerHTML = `
     <img src="https://i.imgur.com/KYCkDME.gif" style="width:90%;max-width:380px;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
     <img src="https://i.imgur.com/wt42fGl.gif" style="width:90%;max-width:380px;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
