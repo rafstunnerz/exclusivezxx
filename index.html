@@ -1885,31 +1885,29 @@ player.innerHTML=`
 
 let luvones = [...document.querySelectorAll('*')].find(e=>e.textContent.trim()==='LUVONES');
 if(luvones){ 
-  luvones.parentNode.insertBefore(player, luvones); 
-    let gifBox = document.createElement('div');
-   gifBox.style.cssText = 'display:flex;flex-direction:row;gap:12px;justify-content:center;margin-top:20px;width:100%;flex-wrap:wrap;';
+  luvones.parentNode.insertBefore(player, luvones);
+  let oldGif = document.getElementById('gifBox'); if(oldGif) oldGif.remove();
+  let gifBox = document.createElement('div');
+  gifBox.id = 'gifBox';
+  gifBox.style.cssText = 'display:flex;flex-direction:row;gap:12px;justify-content:center;margin-top:20px;width:100%;flex-wrap:wrap;';
   gifBox.innerHTML = `
     <img src="https://i.imgur.com/KYCkDME.gif" style="width:48%;max-width:280px;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
     <img src="https://i.imgur.com/wt42fGl.gif" style="width:48%;max-width:280px;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
   `;
-  gifBox.innerHTML = `
-    <img src="https://i.imgur.com/KYCkDME.gif" style="width:90%;max-width:380px;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
-    <img src="https://i.imgur.com/wt42fGl.gif" style="width:90%;max-width:380px;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
-  `;
-  luvones.parentNode.insertBefore(gifBox, luvones.nextSibling);
   luvones.parentNode.insertBefore(gifBox, luvones.nextSibling);
 } else { 
   document.body.appendChild(player); 
 }
 
 let isPlaying=false;
-let audio=document.getElementById('audioEl'),playBtn=document.getElementById('playBtn'),progBar=document.getElementById('progBar'),progWrap=document.getElementById('progWrap');
+let audio=document.getElementById('audioEl'),playBtn=document.getElementById('playBtn'),progBar=document.getElementById('progBar'),progWrap=document.getElementById('progWrap'),curTime=document.getElementById('curTime');
 function fmt(s){let m=Math.floor(s/60);let sc=Math.floor(s%60);return m+":"+(sc<10?"0"+sc:sc);}
 playBtn.onclick=()=>{ if(isPlaying){audio.pause();playBtn.textContent='▶️';}else{audio.play();playBtn.textContent='⏸️';} isPlaying=!isPlaying; };
 let synced=[0,5,11,18,24,31,35];
 audio.ontimeupdate=()=>{
   progBar.style.width=(audio.currentTime/audio.duration)*100+'%';
   curTime.textContent=fmt(audio.currentTime);
+};
   let idx=0; for(let i=0;i<synced.length;i++){ if(audio.currentTime>=synced[i]) idx=i; }
   document.querySelectorAll('.lyr').forEach((l,i)=>{
     l.style.color=i===idx?'white':'rgba(255,255,255,0.35)';
