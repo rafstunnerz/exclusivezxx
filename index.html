@@ -1840,9 +1840,11 @@ let nav=document.createElement('nav');
 nav.id='mainNav';
 nav.style.cssText='position:fixed;top:18px;left:50%;transform:translateX(-50%);width:92%;max-width:950px;height:60px;display:none;align-items:center;justify-content:space-around;background:rgba(15,15,15,0.8);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:100px;z-index:99999;padding:0 10px;';
 nav.innerHTML=`
-<span class="navBtn active" onclick="setActive(this);window.scrollTo({top:0,behavior:'smooth'})" style="background:white;color:black;padding:10px 28px;border-radius:100px;font-weight:800;cursor:pointer;font-size:14px;transition:all 0.3s;">Home</span>
-<span class="navBtn" onclick="setActive(this);document.querySelector('.members-heading').scrollIntoView({behavior:'smooth'})" style="color:white;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">Members</span>
-
+<span class="navBtn active" onclick="setActive(this);window.scrollTo({top:0,behavior:'smooth'})" style="background:black;color:black;padding:10px 28px;border-radius:100px;font-weight:800;cursor:pointer;font-size:14px;transition:all 0.3s;">Home</span>
+<span class="navBtn" onclick="setActive(this);document.querySelector('.members-heading').scrollIntoView({behavior:'smooth'})" style="color:black;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">Members</span>
+<span class="navBtn" onclick="setActive(this);window.scrollTo({top:900,behavior:'smooth'})" style="color:black;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">About</span>
+<span class="navBtn" onclick="setActive(this)" style="color:black;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">Socials</span>
+`;
 document.body.appendChild(nav);
 window.setActive=(el)=>{
   document.querySelectorAll('.navBtn').forEach(b=>{
