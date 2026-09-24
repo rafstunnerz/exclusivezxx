@@ -1008,6 +1008,16 @@ main.show{opacity:1;}
 @keyframes rippleOut{
   to{transform:translate(-50%,-50%) scale(7);opacity:0;}
 }
+ 
+html, body {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
 </style>
 </head>
 <body class="locked">
@@ -1833,7 +1843,7 @@ nav.innerHTML=`
 <span class="navBtn active" onclick="setActive(this);window.scrollTo({top:0,behavior:'smooth'})" style="background:white;color:black;padding:10px 28px;border-radius:100px;font-weight:800;cursor:pointer;font-size:14px;transition:all 0.3s;">Home</span>
 <span class="navBtn" onclick="setActive(this);document.querySelector('.members-heading').scrollIntoView({behavior:'smooth'})" style="color:white;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">Members</span>
 <span class="navBtn" onclick="setActive(this);window.scrollTo({top:900,behavior:'smooth'})" style="color:white;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">About</span>
-<span class="navBtn" onclick="setActive(this)" style="color:white;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">Socials</span>
+<span class="navBtn" onclick="setActive(this)" style="color:red;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">Socials</span>
 `;
 document.body.appendChild(nav);
 window.setActive=(el)=>{
@@ -1856,7 +1866,7 @@ player.id='musicPlayer';
 player.style.cssText='width:90%;max-width:720px;margin:40px auto 20px auto;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-radius:24px;padding:20px;color:white;box-shadow:0 8px 32px rgba(0,0,0,0.25);';
 player.innerHTML=`
 <div style="display:flex;gap:12px;align-items:center;margin-bottom:14px;">
-  <img src="https://i.scdn.co/image/ab67616d0000b273b6d29fb39c7cc4b5caaf98ea" style="width:56px;height:56px;border-radius:10px;">
+  <img src="https://i.imgur.com/aDnhDwz.png" style="width:56px;height:56px;border-radius:10px;">
   <div><div style="font-weight:800;">Timog Made</div><div style="opacity:0.6;font-size:13px;"> Lil Jakas & PONG20</div></div>
 </div>
 
@@ -1880,7 +1890,6 @@ let audio=document.getElementById('audioEl'),playBtn=document.getElementById('pl
 function fmt(s){let m=Math.floor(s/60);let sc=Math.floor(s%60);return m+":"+(sc<10?"0"+sc:sc);}
 playBtn.onclick=()=>{if(isPlaying){audio.pause();playBtn.textContent='▶';}else{audio.play();playBtn.textContent='⏸';}isPlaying=!isPlaying;};
 
-// SYNCED WHITE LYRICS
 let synced=[0,5,11,18,24,31,35];
 audio.ontimeupdate=()=>{
   progBar.style.width=(audio.currentTime/audio.duration)*100+'%';
