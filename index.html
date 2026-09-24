@@ -1886,13 +1886,13 @@ player.innerHTML=`
 let luvones = [...document.querySelectorAll('*')].find(e=>e.textContent.trim()==='LUVONES');
 if(luvones){ 
   luvones.parentNode.insertBefore(player, luvones); 
-  
-  let gifBox = document.createElement('div');
-  gifBox.style.cssText = 'display:flex;gap:10px;justify-content:center;margin-top:15px;flex-wrap:wrap;';
+    let gifBox = document.createElement('div');
+  gifBox.style.cssText = 'display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:20px;width:100%;';
   gifBox.innerHTML = `
-    <img src="https://i.imgur.com/KYCkDME.gif" style="width:140px;height:140px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
-    <img src="https://i.imgur.com/wt42fGl.gif" style="width:140px;height:140px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
+    <img src="https://i.imgur.com/KYCkDME.gif" style="width:90%;max-width:380px;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
+    <img src="https://i.imgur.com/wt42fGl.gif" style="width:90%;max-width:380px;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
   `;
+  luvones.parentNode.insertBefore(gifBox, luvones.nextSibling);
   luvones.parentNode.insertBefore(gifBox, luvones.nextSibling);
 } else { 
   document.body.appendChild(player); 
