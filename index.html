@@ -1840,11 +1840,9 @@ let nav=document.createElement('nav');
 nav.id='mainNav';
 nav.style.cssText='position:fixed;top:18px;left:50%;transform:translateX(-50%);width:92%;max-width:950px;height:60px;display:none;align-items:center;justify-content:space-around;background:rgba(15,15,15,0.8);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:100px;z-index:99999;padding:0 10px;';
 nav.innerHTML=`
-<span class="navBtn active" onclick="setActive(this);window.scrollTo({top:0,behavior:'smooth'})" style="background:black;color:black;padding:10px 28px;border-radius:100px;font-weight:800;cursor:pointer;font-size:14px;transition:all 0.3s;">Home</span>
-<span class="navBtn" onclick="setActive(this);document.querySelector('.members-heading').scrollIntoView({behavior:'smooth'})" style="color:black;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">Members</span>
-<span class="navBtn" onclick="setActive(this);window.scrollTo({top:900,behavior:'smooth'})" style="color:black;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">About</span>
-<span class="navBtn" onclick="setActive(this)" style="color:black;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">Socials</span>
-`;
+<span class="navBtn active" onclick="setActive(this);window.scrollTo({top:0,behavior:'smooth'})" style="background:white;color:black;padding:10px 28px;border-radius:100px;font-weight:800;cursor:pointer;font-size:14px;transition:all 0.3s;">Home</span>
+<span class="navBtn" onclick="setActive(this);document.querySelector('.members-heading').scrollIntoView({behavior:'smooth'})" style="color:white;cursor:pointer;font-size:14px;padding:10px 20px;transition:all 0.3s;">Members</span>
+
 document.body.appendChild(nav);
 window.setActive=(el)=>{
   document.querySelectorAll('.navBtn').forEach(b=>{
@@ -1885,29 +1883,31 @@ player.innerHTML=`
 
 let luvones = [...document.querySelectorAll('*')].find(e=>e.textContent.trim()==='LUVONES');
 if(luvones){ 
-  luvones.parentNode.insertBefore(player, luvones);
-  let oldGif = document.getElementById('gifBox'); if(oldGif) oldGif.remove();
-  let gifBox = document.createElement('div');
-  gifBox.id = 'gifBox';
-  gifBox.style.cssText = 'display:flex;flex-direction:row;gap:12px;justify-content:center;margin-top:20px;width:100%;flex-wrap:wrap;';
+  luvones.parentNode.insertBefore(player, luvones); 
+    let gifBox = document.createElement('div');
+   gifBox.style.cssText = 'display:flex;flex-direction:row;gap:12px;justify-content:center;margin-top:20px;width:100%;flex-wrap:wrap;';
   gifBox.innerHTML = `
     <img src="https://i.imgur.com/KYCkDME.gif" style="width:48%;max-width:280px;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
     <img src="https://i.imgur.com/wt42fGl.gif" style="width:48%;max-width:280px;height:200px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
   `;
+  gifBox.innerHTML = `
+    <img src="https://i.imgur.com/KYCkDME.gif" style="width:90%;max-width:380px;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
+    <img src="https://i.imgur.com/wt42fGl.gif" style="width:90%;max-width:380px;height:220px;object-fit:cover;border-radius:12px;border:1px solid rgba(255,255,255,0.2);">
+  `;
+  luvones.parentNode.insertBefore(gifBox, luvones.nextSibling);
   luvones.parentNode.insertBefore(gifBox, luvones.nextSibling);
 } else { 
   document.body.appendChild(player); 
 }
 
 let isPlaying=false;
-let audio=document.getElementById('audioEl'),playBtn=document.getElementById('playBtn'),progBar=document.getElementById('progBar'),progWrap=document.getElementById('progWrap'),curTime=document.getElementById('curTime');
+let audio=document.getElementById('audioEl'),playBtn=document.getElementById('playBtn'),progBar=document.getElementById('progBar'),progWrap=document.getElementById('progWrap');
 function fmt(s){let m=Math.floor(s/60);let sc=Math.floor(s%60);return m+":"+(sc<10?"0"+sc:sc);}
 playBtn.onclick=()=>{ if(isPlaying){audio.pause();playBtn.textContent='▶️';}else{audio.play();playBtn.textContent='⏸️';} isPlaying=!isPlaying; };
 let synced=[0,5,11,18,24,31,35];
 audio.ontimeupdate=()=>{
   progBar.style.width=(audio.currentTime/audio.duration)*100+'%';
   curTime.textContent=fmt(audio.currentTime);
-};
   let idx=0; for(let i=0;i<synced.length;i++){ if(audio.currentTime>=synced[i]) idx=i; }
   document.querySelectorAll('.lyr').forEach((l,i)=>{
     l.style.color=i===idx?'white':'rgba(255,255,255,0.35)';
